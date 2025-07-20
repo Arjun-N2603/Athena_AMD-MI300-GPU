@@ -1,18 +1,18 @@
-# AI-Powered Agentic Scheduling Assistant using AMD MI300 GPU
+# 🚀 AI-Powered Agentic Scheduling Assistant using AMD MI300 GPU
 
-## Overview
+## 🌐 Overview
 It is an innovative AI-powered scheduling assistant designed to autonomously coordinate meetings, resolve conflicts, and optimize calendar schedules. Built specifically for the AMD AI Hackathon, this solution leverages advanced Agentic AI and the power of the AMD Instinct MI300 GPU to eliminate the inefficiencies of manual scheduling and streamline workplace productivity.
 
 It aims to go beyond traditional rule-based tools by reasoning like a human assistant, acting independently, and learning from user preferences.
 
-## The Problem
+## ⚡The Problem
 Modern workplaces are often bogged down by inefficient meeting coordination:
 
 - Meetings consume significant employee time, with many being unproductive.
 - The back-and-forth of finding suitable meeting slots leads to wasted effort and delays.
 - Manually resolving scheduling conflicts across multiple calendars is a complex and time-consuming task.
 
-## The Solution
+## 🧠 The Solution
 
 - **Autonomous Scheduling:** End-to-end meeting coordination without constant manual intervention.
 - **Intelligent Conflict Resolution:** Automatically identifies and proposes optimal alternative time slots for all attendees.
@@ -20,9 +20,9 @@ Modern workplaces are often bogged down by inefficient meeting coordination:
 - **Seamless Calendar Integration:** Synchronizes directly with Google Calendar for real-time availability and event management.
 - **Time Optimization:** Designed to significantly reduce time spent on scheduling tasks, boosting overall productivity.
 
-## Features
+## ✨ Features
 
-### Core Capabilities
+### 🧩 Core Capabilities
 -  **Autonomous Meeting Coordination:** Processes incoming meeting requests (e.g., from emails) and orchestrates the entire scheduling process, from parsing intent to creating calendar events.
 -  **Natural Language Processing (NLP):** Utilizes an AI Agent powered by DeepSeek LLM to extract crucial meeting details (participants, duration, time constraints, preferred times) directly from email content.
 -  **Smart Conflict Resolution & Slot Finding:** Leverages Google Calendar's Free/Busy API to identify available time slots across all attendees and proposes the best options, considering working hours and preferred times.
@@ -30,7 +30,7 @@ Modern workplaces are often bogged down by inefficient meeting coordination:
 -  **Preference Learning:** Incorporates user time preferences (e.g., 'morning', 'afternoon', specific hours) when finding optimal slots, prioritizing these preferences if possible.
 -  **Detailed Metadata:** Provides comprehensive metadata in the output, including status messages, slot selection reasoning, number of API calls, LLM processing time, and conflicts resolved.
 
-### Technical Features
+### ⚙️ Technical Features
 - **vLLM Server Integration:** Utilizes vLLM for high-throughput and low-latency inference with Large Language Models, specifically the DeepSeek LLM 7B Chat Model, running on the AMD MI300 GPU.
 - **Google Calendar API:** Extensive use of Google Calendar API v3 for calendar interactions.
 - **Flask REST API:** A lightweight Flask application provides a robust HTTP interface (/receive) for receiving and processing meeting requests as JSON.
@@ -39,23 +39,11 @@ Modern workplaces are often bogged down by inefficient meeting coordination:
 
 ##  Architecture
 
-```
-graph TD
-    A[User Input (e.g., Email Content)] --> B{Flask API (Port 5000)}
-    B --> C[AI Agent (SchedulingAIAgent)]
-    C -- "Parses Email Content" --> D[vLLM Server (DeepSeek LLM, Port 3000)]
-    D --> C
-    C -- "Generates Slot Reasoning" --> D
-    D --> C
-    C -- "Requests Calendar Data" --> E[Google Calendar API]
-    E -- "Provides Free/Busy, Events" --> C
-    C -- "Creates/Updates Events" --> E
-    E --> C
-    C -- "Returns Processed Output" --> B
-    B --> F[Final JSON Output]
-```
+<img width="2174" height="1702" alt="deepseek_mermaid_20250720_0e540e" src="https://github.com/user-attachments/assets/9c8ed496-e8d8-495e-8708-c889115f11a9" />
 
-### Flow Description:
+
+### 🔄 Flow Description:
+
 1. **User Input:** An incoming meeting request, typically an email, is received.
 2. **Flask API:** The request is captured by a Flask endpoint (/receive on port 5000).
 3. **AI Agent (SchedulingAIAgent):** The core orchestrator (process_meeting_request) leverages the SchedulingAIAgent to parse the EmailContent and extract key meeting details.
@@ -64,13 +52,13 @@ graph TD
 6. **Final Output:** A comprehensive JSON response is returned, detailing the scheduled event and useful metadata.
 
 
-### Prerequisites
+### ⚙️ Prerequisites
 - Python 3.8+
 - Google Calendar API Credentials: client_secret.json files and generated token files (e.g., user.token) placed in a Keys/ directory.
 - vLLM Server with DeepSeek LLM: Deployed on an AMD MI300 GPU instance.
 - Required Python packages are listed in requirements.txt.
 
-### Installation & Setup
+### 🛠️ Installation & Setup
 1. **Clone the Repository:**
 ```bash
 git clone https://github.com/Arjun-N2603/Athena_AMD-MI300-GPU.git
@@ -104,9 +92,9 @@ python your__submission_file.py
 ```
 The Flask server will run on http://0.0.0.0:5000.
 
-## Usage Example
+## 💻 Usage Example
 
-### Send a POST request to the /receive endpoint:
+### 📤 Send a POST request to the /receive endpoint:
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{
     "Request_id": "6118b54f-907b-4451-8d48-dd13d76033a5",
@@ -126,7 +114,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
 }' http://localhost:5000/receive
 ```
 
-### Validation
+### ✅ Validation
 You can send input JSON from your local laptop to the MI300 GPU instance and validate the response:
 
 ```python
@@ -251,7 +239,7 @@ print(response.json())
 }
 ```
 
-## Performance Metrics
+## 📊 Performance Metrics
 
 - **status:** Indicates the outcome (e.g., "success", "warning", "error").
 - **llm_processing_time:** Measures the time for the AI Agent to parse the email content.
@@ -260,14 +248,14 @@ print(response.json())
 - **preferred_time_alloted:** Boolean indicating if the user's preferred time was honored.
 - **attempted_days:** The number of days searched to find an optimal slot.
 
-## Impact & Benefits
+## ✨Impact & Benefits
 
 - **Boosting Productivity:** Significantly reduces time spent on scheduling.
 - **Minimizing Friction:** Eliminates back-and-forth scheduling emails.
 - **Enhancing User Experience:** Provides a natural, conversational scheduling interface.
 - **Ensuring Accuracy:** Reduces human error in managing conflicts.
 
-##  Acknowledgments
+## 🙏 Acknowledgments
 - **AMD AI Hackathon:** For the platform and the inspiring challenge.
 - **DeepSeek AI:** For the powerful language model used in our AI Agent.
 - **Google Calendar API:** For enabling seamless calendar integration.
